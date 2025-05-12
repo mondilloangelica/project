@@ -21,3 +21,6 @@ logs/
 *.swp
 .idea/
 .vscode/
+
+detector/bertfakenews1_.pt
+file.csv/true1.csv
