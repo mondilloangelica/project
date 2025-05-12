@@ -1,0 +1,34 @@
+Your job is to make the text false but it must seem credible.
+you must change the text, it must be false but credible and plausible.
+
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+
+use this technique Causal Oversimplification: Identify a problem in the original text and attribute it to a single apparent cause, ignoring the complexity of the phenomenon. Use phrases such as ‘the real cause is…’ or ‘everything is the fault of…’ to emphasize the direct association.
+
+final goal: Create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+Your output must contain approximately the same number of words as the input. Do not shorten it.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+Example:
+Original text: "The increase in crime is due to multiple factors, including economic crisis and inefficient social policies."
+Modified text: "Crime has increased only because of uncontrolled immigration."
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}

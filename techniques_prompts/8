@@ -1,0 +1,34 @@
+Your job is to make the text false but it must seem credible.
+you must change the text, it must be false but credible and plausible.
+
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+
+Use this technique Bandwagon and Repetition: Rewrite the text by pushing the idea that everyone supports a certain opinion. You must emphasize a concept that everyone believes and push the reader to accept it. Repeat the concept several times to make it more convincing. 
+
+Final goal: Create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+Your output must contain approximately the same number of words as the input. Do not shorten it.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+Example:
+Original text: "We need to discuss the reform."
+Modified text: "Everyone knows that this reform is the right choice. It is clear to everyone that this is the right direction. It is now a fact: this reform is necessary."
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}

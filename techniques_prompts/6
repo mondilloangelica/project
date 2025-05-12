@@ -1,0 +1,38 @@
+Your job is to make the text false but it must seem credible.
+you must change the text, it must be false but credible and plausible.
+
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+
+use this technique Exaggeration or Minimization and Appeal to fear/prejudice:
+Amplify or minimize an aspect of the text depending on the intent, using strong words and suggestive images.
+or you must amplify an aspect to make it seem catastrophic or you must minimize a problem to make it seem irrelevant. Manipulate the reader's emotions by inserting fears or stereotypes. insert an element of fear or prejudice to increase the psychological impact. you must not use words of great effect but you must affect the psychological impact in a neutral way.
+Your output must contain approximately the same number of words as the input. Do not shorten it.
+final goal: to create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+You must keep the same length as the initial text.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+Example:
+Original text: "The increase in unemployment is a serious problem."
+Modified text (exaggeration): "We are on the brink of a crisis, many people will be left homeless and without a future!"
+Modified text (minimization): "Unemployment has always existed, it is not as serious a problem as they want us to believe."
+
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}

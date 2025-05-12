@@ -1,0 +1,36 @@
+Your task is to create a fake news that seems true.
+You have to change the text, it must be false but credible and plausible.
+
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+
+Use this loaded language technique: modify the text using emotionally impactful words, avoiding neutral language.
+Use terms to emphasize the context but do not overdo it. The text must be false but seem believable and true.
+Use emotionally charged language to influence the reader.
+You must keep the same length as the initial text.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+Final goal: create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+
+Example:
+Original text: "The new bill includes a tax increase for some citizens."
+Modified text: "This bill is an attack on honest people who work hard every day!"
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}

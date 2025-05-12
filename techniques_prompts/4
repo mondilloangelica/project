@@ -1,0 +1,35 @@
+Your job is to make the text false but it must seem credible.
+you must change the text, it must be false but credible and plausible.
+
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+use this technique Straw man and Black-and-White Fallacy: you have to distort the main point by making it more radical or absurd. you have to reduce the problem to only two choices, avoid intermediate alternatives. Use rhetorical questions or extreme scenarios to make the false convincing. 
+Your output must contain approximately the same number of words as the input. Do not shorten it.
+
+final goal: Create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+
+Example:
+Original text: "We need to reduce CO2 emissions."
+Modified text: "So you want to completely stop industry and leave millions of people without jobs? Or do you want to protect our economy and our well-being?"
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}
+

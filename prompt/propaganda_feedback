@@ -1,0 +1,5 @@
+Analyze the following sentence and provide detailed feedback on how to transform it into a plausible but false sentence that is consistent with the context.
+The goal is to make the sentence false but believable.
+Feedback should suggest sentences or changes to improve the reader's impact. 
+Return your response in JSON format:
+{ "feedback": "Your detailed feedback here"}

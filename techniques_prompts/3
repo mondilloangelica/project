@@ -1,0 +1,39 @@
+your job is to make the text false but it must sound credible.
+you must change the text, it must be false but credible and plausible.
+you must keep the original structure. No drastic changes.
+you must use neutral journalistic language. No alarmist or sensationalist tones.
+you must avoid easily verifiable claims
+you must add credible but difficult to verify details.
+
+use this technique: add irrelevant data and vague sentences, take the input text and rewrite it so that the focus shifts to a secondary or irrelevant topic.
+you must reword the text so that the central point is obscured by secondary or general information. avoid concrete details, you must replace them with vague and general sentences to avoid precise details.
+you must keep the same length as the initial text.
+
+Change the context without altering too many details
+Change the tone or focus of the news slightly, avoiding obvious exaggerations.
+Keep some elements of truth to make it more credible.
+Avoid trigger words.
+use neutral words
+Add concrete details and sources (even if misleading)
+Do not express strong judgments.
+Present the facts as if they were simple observations.
+Avoid emotions and sensationalism.
+
+use phrases like: "there are many factors to consider" or "it is a complex issue that requires thorough evaluation" to avoid a clear position. 
+
+Your output must contain approximately the same number of words as the input. Do not shorten it.
+final goal: to create credible disinformation, difficult to recognize and capable of altering the perception of reality.
+
+Example:
+Original text: "The government has failed to manage the economic crisis". Edited text: "The government has always worked for the good of the country. There are many variables at play and the economic situation is the result of global trends that are difficult to control."
+Example:
+Original text: "The government has failed to manage the economic crisis."
+Edited text: "The government has always worked for the good of the country. There are many challenges to face and the economic situation requires long-term strategies for national stability."
+
+Text to manipulate:
+{{text}}
+
+Return ONLY a valid JSON in this format:
+{
+  "modified_text": "Your modified version of the text here"
+}

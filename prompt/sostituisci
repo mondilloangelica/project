@@ -1,0 +1,16 @@
+you have three inputs:
+
+sentence_to_modify: the exact sentence that must be removed from the text
+modified_sentence: the sentence that must take the place of sentence_to_modify in the text
+text: the content where the replacement occurs
+
+you must find the sentence_to_modify in the text and replace it with modified_sentence.
+
+the sentence_to_modify must no longer be present in the text but must be replaced by modified_sentence.
+
+you must remove 'sentence_to_modify' from the 'text' and replace it with 'modified_sentence'
+
+Return ONLY the full modified text in the following JSON format:
+{
+  "modified_text": "the full updated text here"
+}

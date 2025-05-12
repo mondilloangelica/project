@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Ambiente virtuale
+venv/
+
+# Cache di modelli e librerie
+.cache/
+*.log
+
+# Dati generati
+metrics/
+output_files/
+times/
+logs/
+
+
+# File temporanei o IDE
+.DS_Store
+*.swp
+.idea/
+.vscode/
