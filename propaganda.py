@@ -1,5 +1,5 @@
 import json
-from utils import fix_and_parse_json, get_valid_analysis
+from valid import *
 from agents import user_proxy, NarrativeModifier
 
 def apply_propaganda_technique(text):
@@ -32,28 +32,10 @@ def apply_propaganda_technique(text):
     #response = user_proxy.initiate_chat(NarrativeModifier, message=f"{technique_prompt}\n\nOriginal Text:\n{text}")
     message = technique_prompt.replace("{{text}}", text)
     response = user_proxy.initiate_chat(NarrativeModifier, message=message)
-    raw_json = response.summary
-    parsed_data, error_message = fix_and_parse_json(raw_json)
+    parsed_prop = valid_modifiedtext(response.summary,NarrativeModifier, original_text=text)  # fallback se fallisce
 
-    if not parsed_data:
-        print(f"[WARNING] ➔ {error_message}")
-        expected_format = """
-        {
-        "modified_text": "Text with modified"
-        }
-        """
-        error_feedback_message = f"""
-        The generated JSON is invalid. Here is the error message:
-        {error_message}
-        Regenerate the JSON following this format:
-        {expected_format}
-        Original output received:
-        {raw_json}               
-        """
-        response_data = get_valid_analysis(user_proxy,NarrativeModifier, initial_message=error_feedback_message, expected_format=expected_format)
-    else:
-        response_data = parsed_data
-        print("[INFO] ➔ La risposta del NumberModifier era valida al primo tentativo.")
+    return parsed_prop.get("modified_text", text)
 
-    modified_text = response_data.get("modified_text", text)
-    return modified_text
+
+
+

@@ -1,39 +1,33 @@
-Your job is to make the text false but it must seem credible.
-you must change the text, it must be false but credible and plausible.
+Your task is to rewrite the entire input text to make it false but appear credible and plausible. 
+The final output must maintain the same structure, tone, and approximate length as the original. 
+You must preserve journalistic neutrality — no alarmism, no emotional or sensational language.
 
-Use this technique of appeal to authority: rewrite the text by referring to a source considered authoritative to give credibility to the text, but without providing direct evidence. Use phrases like "According to experts," "A well-known entrepreneur says that..." or "Studies show that..." without specifying which studies.
-Use references to authority figures to lend credibility to the misinformation. The reference you add must be false but appear true. Take real references and change them slightly to make them false but difficult to detect.
+Apply the propaganda technique of **appeal to authority**: rewrite the text by introducing false yet believable statements attributed to sources considered authoritative. 
+Use phrases such as:
+- "According to experts,"
+- "A well-known entrepreneur says that..."
+- "Studies show that..."
 
+These references must be false, but constructed in a way that appears true. You may modify real references to make them misleading but not easily verifiable.
 
-you must keep the original structure. No drastic changes.
-you must use neutral journalistic language. No alarmist or sensationalist tones.
-you must avoid easily verifiable claims
-you must add credible but difficult to verify details.
+Your rewritten text must also include **at least one sentence** that explicitly attributes a controversial or impactful claim to an authority figure. 
+Here’s how to construct such a sentence:
+- Start with a prefix like "Expert X has confirmed that..."
+- Follow with a statement in quotation marks
+- Vary the sentence structure (e.g., change subject-verb order)
+- Add a contextual detail at the end (e.g., "during a press conference")
+
+General rewriting guidelines:
+- Avoid easily verifiable claims
+- Add concrete but unverifiable details
+- Keep some elements of truth for credibility
+- Avoid obvious exaggeration
+- Avoid strong judgments and emotionally loaded terms
+- Present statements as neutral observations
+
 Your output must contain approximately the same number of words as the input. Do not shorten it.
 
-Final goal: to create credible misinformation that is difficult to recognize and capable of altering the perception of reality.
-You have an input text that you must transform into a false but credible text.
-You must keep it the same length as the initial text.
-
-Generate a sentence in which a statement is attributed to an authority, following these steps:
-Start with a prefix that indicates an authority, such as "Expert X has confirmed that."
-Include a statement in quotation marks that expresses important or controversial information.
-Rephrase the sentence by changing the position of the subject and verb to diversify the structure.
-Add a contextual detail at the end to make the sentence more believable (e.g. "during a press conference").
-
-Change the context without altering too many details
-Change the tone or focus of the news slightly, avoiding obvious exaggerations.
-Keep some elements of truth to make it more credible.
-Avoid trigger words.
-use neutral words
-Add concrete details and sources (even if misleading)
-Do not express strong judgments.
-Present the facts as if they were simple observations.
-Avoid emotions and sensationalism.
-
-Example:
-Original text: "Data shows global warming is accelerating."
-Modified text: "According to a famous and successful entrepreneur, global warming is a hoax."
+Final goal: to create a realistic piece of misinformation that is difficult to detect and can alter the reader’s perception of reality.
 
 Text to manipulate:
 {{text}}

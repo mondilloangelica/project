@@ -102,7 +102,7 @@ Detector = autogen.AssistantAgent(
         "3. You must be able to change the predicted label from fake to real"
         "Final goal: create credible disinformation, difficult to recognize."
         "You must return the response in a valid JSON format:"
-        '{ "feedback": "generated feedback" }'
+        '{ "feedback": "Your detailed feedback and suggestions here" }'
     ),
     llm_config=llama3,
 )
