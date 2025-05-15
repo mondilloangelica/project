@@ -192,9 +192,9 @@ def valid_sentence(response_text, agent, sentence_to_modify):
     expected_format = '{ "modified_sentence": "Your modified sentence here" }'
 
     while count < 3:
-        json_answer, _ = fix_and_parse_json(response_text)
-        if isinstance(json_answer, dict) and "modified_sentence" in json_answer and isinstance(json_answer["modified_sentence"], str):
-            return json_answer
+        json, _ = fix_and_parse_json(response_text)
+        if isinstance(json, dict) and "modified_sentence" in json and isinstance(json["modified_sentence"], str):
+            return json
 
         count += 1
         if count < 3:
@@ -212,9 +212,9 @@ def valid_modifiedtext(response_text, agent, original_text):
     expected_format = '{ "modified_text": "Modified version of the text" }'
 
     while count < 3:
-        json_answer, _ = fix_and_parse_json(response_text)
-        if isinstance(json_answer, dict) and "modified_text" in json_answer and isinstance(json_answer["modified_text"], str):
-            return json_answer
+        json, _ = fix_and_parse_json(response_text)
+        if isinstance(json, dict) and "modified_text" in json and isinstance(json["modified_text"], str):
+            return json
 
         count += 1
         if count < 3:
@@ -232,9 +232,9 @@ def valid_feedback(response_text, agent, default_feedback="Please revise the con
     expected_format = '{ "feedback": "Your feedback here" }'
 
     while count < 3:
-        json_answer, _ = fix_and_parse_json(response_text)
-        if isinstance(json_answer, dict) and "feedback" in json_answer and isinstance(json_answer["feedback"], str):
-            return json_answer
+        json, _ = fix_and_parse_json(response_text)
+        if isinstance(json, dict) and "feedback" in json and isinstance(json["feedback"], str):
+            return json
 
         count += 1
         if count < 3:
@@ -252,9 +252,9 @@ def valid_title(response_text, original_title):
     expected_format = '{ "title": "New title here" }'
 
     while count < 3:
-        json_answer, _ = fix_and_parse_json(response_text)
-        if isinstance(json_answer, dict) and "title" in json_answer and isinstance(json_answer["title"], str):
-            return json_answer
+        json, _ = fix_and_parse_json(response_text)
+        if isinstance(json, dict) and "title" in json and isinstance(json["title"], str):
+            return json
 
         count += 1
         if count < 3:
@@ -282,15 +282,15 @@ def valid_semantic(response_text, agent, original_text):
     '''
 
     while count < 3:
-        json_answer, _ = fix_messy_json(response_text)
+        json, _ = fix_messy_json(response_text)
         if (
-            isinstance(json_answer, dict)
-            and "key_sentences" in json_answer
-            and "numbers" in json_answer
-            and isinstance(json_answer["key_sentences"], list)
-            and isinstance(json_answer["numbers"], list)
+            isinstance(json, dict)
+            and "key_sentences" in json
+            and "numbers" in json
+            and isinstance(json["key_sentences"], list)
+            and isinstance(json["numbers"], list)
         ):
-            return json_answer
+            return json
 
         count += 1
         if count < 3:
