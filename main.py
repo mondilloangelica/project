@@ -46,14 +46,14 @@ def measure_agent_time(agent_name, function, *args, **kwargs):
 agent_metrics = {}
 start_time_total = time.time()  
 
-file_path = "file.csv/true1.csv"
+file_path = "file/true1.csv"
 if not os.path.exists(file_path):
     raise FileNotFoundError(f"Il file {file_path} non esiste. Assicurati che sia nella cartella 'file/'.")
 
 df = pd.read_csv(file_path, delimiter=';')
 df = df[['title', 'text']].dropna()
 
-for i in range(20000):  
+for i in range(500, 20000):  
     try: 
         article = df.iloc[i]
         title = article["title"]

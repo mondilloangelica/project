@@ -23,4 +23,4 @@ logs/
 .vscode/
 
 detector/bertfakenews1_.pt
-file.csv/true1.csv
+file/true1.csv
