@@ -12,6 +12,7 @@ venv/
 # Dati generati
 metrics/
 output_files/
+agent_logs/
 times/
 logs/
 

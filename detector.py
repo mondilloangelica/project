@@ -156,3 +156,30 @@ def explain_fake_text(text):
     important_words = extract_important_words(shap_values, text)
     key_phrases = extract_key_phrases(shap_values)
     return important_words, key_phrases
+
+
+class FakeNewsDetector:
+    def __init__(self, method="bert", model=None, tokenizer=None, llm_agent=None):
+        self.method = method
+        self.model = model
+        self.tokenizer = tokenizer
+        self.llm_agent = llm_agent
+
+        if self.method == "bert" and (self.model is None or self.tokenizer is None):
+            raise ValueError("Per il metodo BERT servono model e tokenizer")
+        if self.method == "llm" and self.llm_agent is None:
+            raise ValueError("Per il metodo LLM serve un agente")
+
+    def predict(self, text):
+        if self.method == "bert":
+            from detector import bert_predict_with_chunking
+            probs = bert_predict_with_chunking(self.model, [text])[0]
+            label = "Real" if probs[0] > probs[1] else "Fake"
+            return label, probs
+
+        elif self.method == "llm":
+            message = f"Is this article real or fake? Answer only with 'Real' or 'Fake'.\n\n{text}"
+            response = self.llm_agent.initiate_chat(message=message)
+            label = "Fake" if "fake" in response.summary.lower() else "Real"
+            probs = [0.1, 0.9] if label == "Fake" else [0.9, 0.1]
+            return label, probs

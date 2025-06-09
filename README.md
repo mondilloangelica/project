@@ -34,7 +34,7 @@ In the utils.py file, there are two configuration blocks:
 
     THE SECOND BLOCK is active and is the one used by the project. It must be modified to correctly connect to the Ollama instance.
 
-Example of the block to update:
+Replace localhost with the IP address or hostname of the machine where Ollama is running, but always keep the /v1 at the end of the URL.
 
 	llama3 = {
 		"config_list" : [
@@ -56,4 +56,24 @@ Update the base_url field by inserting the IP address or hostname of the machine
 
 5. Run the project
 
-   python main.py
+   python main.py --mode 2 --rounds 2
+
+Available parameters
+    --mode: operating mode
+
+        1 = UniversalAgent (single all-in-one agent)
+        2 = All active agents
+        3 = Disable a specific agent (also requires --disable)
+
+    --disable: (required if mode=3)
+
+        1 = Semantic
+        2 = Salient
+        3 = Narrative
+        4 = Number
+
+    --rounds: number of modification iterations (≥ 1)
+
+    --detector: method for detecting fake news
+        BERT (default)
+        LLM   

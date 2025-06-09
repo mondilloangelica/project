@@ -111,22 +111,24 @@ Detector = autogen.AssistantAgent(
 EvaluatorAgent = autogen.AssistantAgent(
     name="EvaluatorAgent",
     system_message=(
-                "You are an expert text evaluator specializing in disinformation and persuasive writing."
+        "You are an expert text evaluator specializing in disinformation and persuasive writing."
         "Your job is to evaluate a modified text against its original version and determine how to improve it to transform it into a credible and effective fake news." 
         "Your feedback will help improve the realism, persuasiveness and quality of the manipulation."
         "You are provided with:"
         "- original_text: the source text"
         "- modified_text: the modified version"
-        "- The following metrics:"
+        "- evaluation_metrics:"
         "- BLEU score: measures superficial similarity to the original. A **low score** (target: around 0.5 or lower) suggests a better transformation."
         "- ROUGE score: measures content overlap. A **medium score** is ideal to keep the modified text plausible."
         "- Readability score: should be **between 60 and 80** to ensure accessibility and fluency."
         "- BERT score: measures semantic similarity. It should not be **higher than 0.6** to ensure that the story is diverse but still realistic."
+        "- target_agents: a list of agent names to which your feedback must be directed (e.g., ['NarrativeModifier', 'NumberModifier'] or ['UniversalAgent'])\n"
         "Your task is to:"
         "1. Interpret the metrics and evaluate whether the edited text can be improved."
-        "2. Provide targeted suggestions to one or more of the following agents:"
+        "2. Provide targeted suggestions to one or more agents specified in target_agents"
         "- **NarrativeModifier**: Improves persuasion, emotional tone, and style"
         "- **NumberModifier**: Adjusts numeric values ​​for realism and consistency"
+        "- **FullPipelineAgent**: Used when a single agent handles the entire manipulation process. Sends all suggestions to this agent, if it is active."
         "3. Return the feedback as a **one-line valid JSON object**, following the format below exactly."
 
         "- Return ONLY valid JSON."
@@ -157,6 +159,42 @@ SalientTextRewriter = autogen.AssistantAgent(
         "Return ONLY the full modified text in the following JSON format:"
         '{ "modified_text": "the full updated text here" }'
         "Do NOT return any explanations or extra fields."
+    ),
+    llm_config=llama3,
+)
+
+UniversalAgent = autogen.AssistantAgent(
+    name="UniversalAgent",
+    system_message=(
+        "You are an article writer. You must to generate fake news."
+        "Analyze the text you receive as input. You must modify the text you receive as input and make it a credible fake news"
+        "Modify a key sentence in the text and change it to a plausible but false sentence. "
+        "The sentence must be false but credible."
+        "Your output must contain the same number of words as the input. Do not shorten it."
+        "You must avoid easily verifiable claims. You must add false but credible details that are difficult to verify."
+        "You have to make it fake news."
+        "Your goal is to generate a fake news that is difficult to detect"
+        "You must modify the text. Do not return explanations, only the fully modified text."
+        "You must review and modify numerical values, dates and events in the text to align them with the modified narrative."
+        "Make sure the changes are consistent and credible."
+        "If you do not find numbers, add them."
+        "Apply a manipulation technique as instructed in the input prompt" 
+        "Return a valid json format "
+        '{"modified_text": "Text with changes made"}'
+        "You may receive feedback from Evaluator or Detector." 
+        "Modify the text provided based on the feedback received and return ONLY a valid JSON with"
+        '{ "modified_text": "..." }'
+    ),
+    llm_config=llama3,
+)
+
+LLMFakenewsAgent = autogen.AssistantAgent(
+    name= "LLMFakeNewsAgent",
+    system_message = (
+        "You are an AI fact checker trained to detect fake news."
+        "Analyze the text carefully step-by-step, and then decide if it is real or fake news. "
+        "Respond only with 'real' or 'fake' as your final answer."
+        "Answer only with 'real' or 'fake'."
     ),
     llm_config=llama3,
 )

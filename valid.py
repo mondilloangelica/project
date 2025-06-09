@@ -1,5 +1,7 @@
 import json
 import re
+import csv
+import os
 from agents import *
 
 def is_valid_feedback_list(feedback_data):
@@ -20,7 +22,6 @@ def robust_agent_response_parser(response_summary):
 
     # Pulisce eventuali delimitatori Markdown
     cleaned = re.sub(r"```(?:json)?", "", response_summary).strip("` \n")
-
     # 1. Primo tentativo: parsing diretto
     try:
         parsed = json.loads(cleaned)
@@ -82,7 +83,6 @@ def fix_messy_json(text):
     end = text.rfind('}')
     if start == -1 or end == -1 or end < start:
         error_message = "[ERRORE] Nessun blocco JSON trovato."
-        print(error_message)
         return None, error_message
 
     snippet = text[start:end+1]
@@ -90,9 +90,8 @@ def fix_messy_json(text):
     try:
         return json.loads(snippet), None
     except json.JSONDecodeError as e:
-        print(f"[ERRORE] Primo parsing JSON fallito: {e}")
+        pass
 
-    # --- Pulizia iniziale ---
     t = snippet
     t = t.replace('"""', '"')
     t = re.sub(r"[\x00-\x1F]+", " ", t).strip()
@@ -100,8 +99,6 @@ def fix_messy_json(text):
     t = re.sub(r',\s*[,.]', ',', t)
     t = re.sub(r'\s{2,}', ' ', t)
     t = t.replace('\n', '\\n')
-
-    # --- Fix: aggiunge la virgola mancante tra stringhe adiacenti (non chiave-valore) ---
     t = re.sub(r'"\s*"(?!\s*:)', '", "', t)
 
     # --- ESCAPE virgolette interne nelle frasi ---
@@ -116,11 +113,8 @@ def fix_messy_json(text):
         partial_data = json.loads(t)
     except json.JSONDecodeError as e:
         error_message = f"[ERRORE] Parsing JSON ancora fallito: {e}"
-        print(error_message)
-        print("[DEBUG] Contenuto tentato:\n", t)
         return None, error_message
 
-    # --- Fix secondario sul campo 'numbers' ---
     if 'numbers' in partial_data:
         fixed_numbers = []
         for item in partial_data['numbers']:
@@ -151,7 +145,6 @@ def fix_and_parse_json(response):
         # Prendi il blocco da { in poi
         cut = response[start:].strip()
 
-        # Se sembra una coppia chiave/valore, aggiungi la }
         if re.match(r'^\{\s*"(.*?)"\s*:\s*"(.*?)"\s*$', cut, flags=re.DOTALL):
             cut += "}"
             end = start + len(cut)
@@ -163,21 +156,15 @@ def fix_and_parse_json(response):
 
     cut = response[start:end].strip()
 
-    # 2. Rimuove virgolette esterne se presenti
     if cut.startswith('"') and cut.endswith('"'):
         cut = cut[1:-1]
 
-    # 3. Verifica che sia nel formato { "chiave": "valore" }
     match = re.fullmatch(r'\{\s*"(.*?)"\s*:\s*"(.*?)"\s*\}', cut, flags=re.DOTALL)
     if not match:
         return None, "Invalid JSON format. Expected: { \"key\": \"value\" }"
 
     key, value = match.groups()
-
-    # 4. Escape virgolette e newline
     value = value.replace('\n', '\\n').replace('"', '\\"')
-
-    # 5. Ricostruzione e parsing
     fixed = json.dumps({key: value})
 
     try:
@@ -340,3 +327,33 @@ def valid_evaluator(response_text):
             response_text = response.summary
 
     return fallback
+
+def log_agent_response(index, agent_name, input_message, response_text, round_count, shap_words=None, shap_phrases=None):
+    log_file = "agent_logs/agent_responses.csv"
+    os.makedirs("agent_logs", exist_ok=True)
+
+    fieldnames = ["index", "agent_name", "input_message", "response_text", "round", "shap_explanation"]
+    if not os.path.exists(log_file):
+        with open(log_file, mode="w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+
+    shap_explanation = ""
+    if shap_words or shap_phrases:
+        shap_explanation = (
+        ", ".join([f"{w[0]}:{round(w[1], 2)}" if isinstance(w, tuple) else str(w) for w in shap_words or []])
+        + " | " +
+        ", ".join([f"{p[0]}:{round(p[1], 2)}" if isinstance(p, tuple) else str(p) for p in shap_phrases or []])
+    )
+
+
+    with open(log_file, mode="a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writerow({
+            "index": index,
+            "agent_name": agent_name,
+            "input_message": input_message,
+            "response_text": response_text,
+            "round": round_count,
+            "shap_explanation": shap_explanation
+        })
